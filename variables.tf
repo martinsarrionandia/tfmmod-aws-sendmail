@@ -2,14 +2,14 @@ variable "domain" {
   type = string
 }
 
+variable "mail-from-domain" {
+  type    = string
+  default = "mailer"
+}
+
 variable "reputation-metrics-enabled" {
   type    = bool
   default = "false"
-}
-
-variable "create-spf-record" {
-  type    = bool
-  default = false
 }
 
 variable "spf-record" {

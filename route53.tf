@@ -1,7 +1,3 @@
-data "aws_route53_zone" "this" {
-  name = var.domain
-}
-
 resource "aws_route53_record" "this_amazonses_dkim_record" {
   count   = var.dkim-record-count
   zone_id = data.aws_route53_zone.this.zone_id
@@ -28,10 +24,17 @@ resource "aws_route53_record" "this_amazonses_dmarc_record" {
 }
 
 resource "aws_route53_record" "this_spf_record" {
-  count   = var.create-spf-record ? 1 : 0
   zone_id = data.aws_route53_zone.this.zone_id
   type    = "TXT"
-  name    = var.domain
+  name    = aws_ses_domain_mail_from.this.mail_from_domain
   ttl     = "600"
   records = var.spf-record
+}
+
+resource "aws_route53_record" "this_ses_domain_mail_from_mx" {
+  zone_id = aws_route53_zone.this.id
+  name    = aws_ses_domain_mail_from.this.mail_from_domain
+  type    = "MX"
+  ttl     = "600"
+  records = ["10 ${local.mx_record}"]
 }

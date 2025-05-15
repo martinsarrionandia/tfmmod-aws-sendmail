@@ -32,7 +32,3 @@ resource "aws_iam_group_policy" "ses_relay_group_policy" {
     ]
   })
 }
-
-locals {
-  relay_name = replace(var.domain, ".", "_")
-}
