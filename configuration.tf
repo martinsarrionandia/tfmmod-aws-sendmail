@@ -1,6 +1,6 @@
-resource "aws_ses_configuration_set" "config_set" {
+resource "aws_ses_configuration_set" "this" {
 
-  name                       = replace(var.domain, ".", "_")
+  name                       = local.relay_name
   reputation_metrics_enabled = var.reputation-metrics-enabled
   sending_enabled            = true
 

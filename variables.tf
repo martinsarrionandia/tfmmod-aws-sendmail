@@ -1,6 +1,5 @@
 variable "domain" {
-  type    = string
-  default = "djmaddox.co.uk"
+  type = string
 }
 
 variable "reputation-metrics-enabled" {
