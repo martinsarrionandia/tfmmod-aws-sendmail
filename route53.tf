@@ -32,7 +32,7 @@ resource "aws_route53_record" "this_spf_record" {
 }
 
 resource "aws_route53_record" "this_ses_domain_mail_from_mx" {
-  zone_id = aws_route53_zone.this.id
+  zone_id = data.aws_route53_zone.this.id
   name    = aws_ses_domain_mail_from.this.mail_from_domain
   type    = "MX"
   ttl     = "600"
