@@ -18,3 +18,11 @@ resource "aws_route53_record" "this_amazonses_verification_record" {
   ttl     = "600"
   records = [aws_ses_domain_identity.this.verification_token]
 }
+
+resource "aws_route53_record" "this_amazonses_verification_record" {
+  count   = var.create-spf-record ? 1 : 0
+  zone_id = data.aws_route53_zone.this.zone_id
+  type    = "TXT"
+  name    = var.domain
+  records = var.spf-record
+}
