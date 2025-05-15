@@ -24,5 +24,6 @@ resource "aws_route53_record" "this_spf_record" {
   zone_id = data.aws_route53_zone.this.zone_id
   type    = "TXT"
   name    = var.domain
+  ttl     = "600"
   records = var.spf-record
 }
