@@ -7,7 +7,7 @@ resource "aws_iam_access_key" "this" {
 }
 
 resource "aws_iam_group" "this_ses_group" {
-  name = "AWSSESSendingGroupDoNotRename"
+  name = "${local.relay_name}-AWSSESSendingGroup"
 }
 
 resource "aws_iam_group_membership" "this_ses_group_membership" {
