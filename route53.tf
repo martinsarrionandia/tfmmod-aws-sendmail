@@ -20,7 +20,7 @@ resource "aws_route53_record" "this_amazonses_dmarc_record" {
   type    = "TXT"
   name    = "_dmarc.${aws_ses_domain_identity.this.domain}"
   ttl     = "600"
-  records = ["v=DMARC1; p=none;"]
+  records = ["v=DMARC1; p=reject; sp=reject"]
 }
 
 resource "aws_route53_record" "this_spf_record" {
